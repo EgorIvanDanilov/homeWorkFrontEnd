@@ -10,21 +10,21 @@ const clearInputs = function (event) {
 };
 
 const delLast = function () {
-  wishes.pop(); // Удаляем последний элемент из массива желаний
-  renderWishlist(); // Перерисовываем список желаний
+  wishes.pop(); // delete last item
+  renderWishlist();
 };
 
 const markAsCompleted = function (index) {
   wishes[index].completed = true;
-  renderWishlist(); // Перерисовываем список желаний
+  renderWishlist();
 };
 
 const renderWishlist = function () {
-  wishlist.innerHTML = ""; // Очищаем содержимое списка
+  wishlist.innerHTML = ""; // clear
 
   wishes.forEach((wish, index) => {
     const textItem = document.createElement("p");
-    textItem.textContent = `Я хочу ${wish.wish} и их ${wish.amount} шт`;
+    textItem.textContent = `I need to do ${wish.wish}, ${wish.amount} `;
 
     if (wish.completed) {
       textItem.classList.add("completed");
@@ -43,13 +43,13 @@ wishForm.addEventListener("submit", (event) => {
   const wish = {
     wish: event.target.wish.value,
     amount: event.target.amount.value,
-    completed: false, // Добавляем свойство completed для отметки выполненных задач
+    completed: false, // add completed
   };
   wishes.push(wish);
 
   clearInputs(event);
 
-  renderWishlist(); // Перерисовываем список желаний
+  renderWishlist();
 });
 
 buttonDel.addEventListener("click", delLast);
